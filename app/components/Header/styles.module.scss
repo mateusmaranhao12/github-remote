@@ -1,0 +1,13 @@
+.header {
+    font-family: var(--font-roboto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 64px;
+    background-color: black;
+
+    h2 {
+        color: white;
+    }
+}
