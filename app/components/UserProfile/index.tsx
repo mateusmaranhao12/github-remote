@@ -1,26 +1,33 @@
 import Image from "next/image";
-import ProfileImage from "../../assets/profile.jpg";
 import styles from './styles.module.scss'
+import { GitHubProfileType } from "@/app/types/GitHubProfileType";
 
-export default function UserProfile() {
+interface IProps {
+    isMyProfile?: boolean
+    profile: GitHubProfileType
+}
+
+export default function UserProfile({ isMyProfile, profile }: IProps) {
   return (
     <div className={styles.container}>
       <div className={styles['container--avatar']}>
-        <Image src={ProfileImage} alt="avatar" width={249} height={249} />
-        <div>Meu perfil</div>
+        <Image src={profile.avatar_url} alt="avatar" width={249} height={249} />
+        {isMyProfile && 
+          <div>Meu perfil</div>
+        }
       </div>
 
-      <h1>Mateus Maranhão</h1>
-      <span>mateusmaranhao12</span>
+      <h1>{profile.name}</h1>
+      <span>{profile.login}</span>
       <p>
-        Computer Science Student at Unit in Aracaju - SE, Full-Stack Developer
+        {profile.bio}
       </p>
 
       <div className={styles['items-container']}>
-        <span>@DEV2DEV</span>
-        <span>Presidente Prudente</span>
-        <span>mateusnmaranhao@gmail.com</span>
-        <span>https://www.instagram.com/mateusnmaranhao/</span>
+        <span>{profile.company}</span>
+        <span>{profile.location}</span>
+        <span>{profile.email}</span>
+        <span>{profile.blog}</span>
       </div>
     </div>
   );

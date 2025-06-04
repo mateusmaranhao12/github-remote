@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import './globals.scss'
 import Header from "./components/Header";
 import { Open_Sans, Roboto } from "next/font/google"
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "GitHub Profile",
@@ -31,7 +33,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.variable} ${roboto.variable}`}>
         <Header />
-        {children}
+        <Suspense fallback={<Loading />}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );
